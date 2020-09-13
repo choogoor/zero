@@ -2,7 +2,7 @@
 
 function zero_scripts() {
   wp_enqueue_style( 'zero', get_stylesheet_uri(), array() );
-  wp_enqueue_script( 'zero', get_template_directory_uri() . '/scripts.min.js', array( 'jquery' ), '0.0.1', true );
+  wp_enqueue_script( 'zero', get_template_directory_uri() . '/scripts.min.js', array(), '0.0.1', true );
 }
 
 add_action( 'wp_enqueue_scripts', 'zero_scripts' );
