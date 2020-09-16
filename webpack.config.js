@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
-  entry: ['./js/scripts.js', './scss/style.scss'],
+  entry: ['./assets/js/scripts.js', './assets/scss/style.scss'],
   output: {
     filename: 'scripts.min.js',
     path: path.resolve(__dirname)
@@ -20,8 +20,20 @@ module.exports = {
       },
       {
         test: /\.(sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-      }
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+      },
+      {
+        test: /\.(pdf|gif|png|jpe?g|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: './assets/static/',
+              name: '[name].[ext]'
+            },
+          },
+        ],
+      },
     ]
   },
   plugins: [
